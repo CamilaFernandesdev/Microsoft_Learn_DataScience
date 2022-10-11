@@ -1,4 +1,7 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+
+
 
 # Define an array of study hours
 study_hours = [10.0,11.5,9.0,16.0,9.25,1.0,11.5,9.0,8.5,14.5,15.5,
@@ -60,3 +63,45 @@ print(df_students.groupby(df_students.Pass)['StudyHours', 'Grade'].mean())
 
 # Create a DataFrame with the data sorted by Grade (descending)
 df_students = df_students.sort_values('Grade', ascending=False)
+
+#----------------------------------------------------------------------------------------------------------------
+# Create a bar plot of name vs grade
+plt.bar(x=df_students.Name, height=df_students.Grade, color='orange')
+
+# Customize the chart
+plt.title('Student Grades')
+plt.xlabel('Student')
+plt.ylabel('Grade')
+plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)
+plt.xticks(rotation=90)
+
+# Display the plot
+plt.show()
+#----------------------------------------------------------------------------------------------------------------
+
+#Create with expecific size
+# Create a Figure
+fig = plt.figure(figsize=(8,3))
+
+# Create a bar plot of name vs grade
+plt.bar(x=df_students.Name, height=df_students.Grade, color='orange')
+
+# Customize the chart
+plt.title('Student Grades')
+plt.xlabel('Student')
+plt.ylabel('Grade')
+plt.grid(color='#95a5a6', linestyle='--', linewidth=2, axis='y', alpha=0.7)
+plt.xticks(rotation=90)
+
+# Show the figure
+plt.show()
+
+#----------------------------------------------------------------------------------------------------------------
+# Create a pie chart of pass counts on the second axis
+pass_counts = df_students['Pass'].value_counts()
+ax[1].pie(pass_counts, labels=pass_counts)
+ax[1].set_title('Passing Grades')
+ax[1].legend(pass_counts.keys().tolist())
+
+# Add a title to the Figure
+fig.suptitle('Student Data')
